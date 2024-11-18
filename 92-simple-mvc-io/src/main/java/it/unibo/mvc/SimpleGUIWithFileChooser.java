@@ -21,8 +21,11 @@ public final class SimpleGUIWithFileChooser {
     private static final String TITLE = "My first Java graphical interface";
     private static final int PROPORTION = 5;
     private final JFrame frame = new JFrame(TITLE);
-    private Controller controller = new Controller();
+    private final Controller controller = new Controller();
 
+    /**
+     * Creates a new SimpleGUIWithFileChooser.
+     */
     public SimpleGUIWithFileChooser() {
         final JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
@@ -30,8 +33,8 @@ public final class SimpleGUIWithFileChooser {
         final JButton saveButton = new JButton("Save");
         saveButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                controller.write(textArea.getText());   
+            public void actionPerformed(final ActionEvent e) {
+                controller.write(textArea.getText());
             }
         });
         mainPanel.add(textArea, BorderLayout.CENTER);
@@ -46,9 +49,9 @@ public final class SimpleGUIWithFileChooser {
         browseButton.addActionListener(new ActionListener() {
 
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(final ActionEvent e) {
                 final JFileChooser chooser = new JFileChooser();
-                int result = chooser.showSaveDialog(frame);
+                final int result = chooser.showSaveDialog(frame);
                 if (result == JFileChooser.APPROVE_OPTION) {
                     textField.setText(chooser.getSelectedFile().getName());
                     controller.setFile(chooser.getSelectedFile());
@@ -56,7 +59,6 @@ public final class SimpleGUIWithFileChooser {
                     JOptionPane.showMessageDialog(frame, "Error in the process");
                 }
             }
-            
         });
         secondPanel.add(browseButton, BorderLayout.LINE_END);
         mainPanel.add(secondPanel, BorderLayout.NORTH);
@@ -88,7 +90,13 @@ public final class SimpleGUIWithFileChooser {
          */
         frame.setVisible(true);
     }
-    public static void main(String[] args) {
+
+    /**
+     * Launches the application.
+     * 
+     * @param args ignored
+     */
+    public static void main(final String[] args) {
         new SimpleGUIWithFileChooser().display();
     }
 }

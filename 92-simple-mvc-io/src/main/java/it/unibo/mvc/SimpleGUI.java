@@ -18,13 +18,16 @@ public final class SimpleGUI {
     private static final String TITLE = "My first Java graphical interface";
     private static final int PROPORTION = 5;
     private final JFrame frame = new JFrame(TITLE);
-    private Controller controller;
+    private final Controller controller = new Controller();
 
+    /**
+     * Creates a new SimpleGUI.
+     */
     public SimpleGUI() {
         final JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
         final JTextArea textArea = new JTextArea();
-        JButton saveButton = new JButton("Save");
+        final JButton saveButton = new JButton("Save");
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
@@ -35,10 +38,6 @@ public final class SimpleGUI {
         panel.add(saveButton, BorderLayout.SOUTH);
         frame.setContentPane(panel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }
-
-    public void setController(final Controller observer) {
-        this.controller = observer;
     }
 
     private void display() {
@@ -66,7 +65,11 @@ public final class SimpleGUI {
         frame.setVisible(true);
     }
 
-    public static void main(String[] args) {
+    /**
+     * Launches the application.
+     * @param args ignores
+     */
+    public static void main(final String[] args) {
         new SimpleGUI().display();
     }
 }
