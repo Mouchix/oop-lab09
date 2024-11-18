@@ -24,10 +24,10 @@ public final class SimpleGUIWithFileChooser {
     private Controller controller = new Controller();
 
     public SimpleGUIWithFileChooser() {
-        JPanel mainPanel = new JPanel();
+        final JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
         final JTextArea textArea = new JTextArea();
-        JButton saveButton = new JButton("Save");
+        final JButton saveButton = new JButton("Save");
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -36,13 +36,13 @@ public final class SimpleGUIWithFileChooser {
         });
         mainPanel.add(textArea, BorderLayout.CENTER);
         mainPanel.add(saveButton, BorderLayout.SOUTH);
-        JPanel secondPanel = new JPanel();
+        final JPanel secondPanel = new JPanel();
         secondPanel.setLayout(new BorderLayout());
-        JTextField textField = new JTextField();
+        final JTextField textField = new JTextField();
         textField.setEditable(false);
         textField.setText(controller.getPath());
         secondPanel.add(textField, BorderLayout.CENTER);
-        JButton browseButton = new JButton("Browse...");
+        final JButton browseButton = new JButton("Browse...");
         browseButton.addActionListener(new ActionListener() {
 
             @Override
@@ -52,9 +52,7 @@ public final class SimpleGUIWithFileChooser {
                 if (result == JFileChooser.APPROVE_OPTION) {
                     textField.setText(chooser.getSelectedFile().getName());
                     controller.setFile(chooser.getSelectedFile());
-                } else if (result == JFileChooser.CANCEL_OPTION) {
-
-                } else {
+                } else if (result != JFileChooser.CANCEL_OPTION) {
                     JOptionPane.showMessageDialog(frame, "Error in the process");
                 }
             }

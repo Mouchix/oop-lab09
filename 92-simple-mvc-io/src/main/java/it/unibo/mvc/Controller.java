@@ -7,10 +7,10 @@ import java.nio.charset.StandardCharsets;
 /**
  * Application controller. Performs the I/O.
  */
-final public class Controller {
+public class Controller {
     private File file = new File(System.getProperty("user.home") + System.getProperty("file.separator") + "output.txt");
 
-    public void write(String input) {
+    public void write(final String input) {
         try (final PrintStream ps = new PrintStream(getPath(), StandardCharsets.UTF_8)) {
             ps.print(input);
         } catch (final IOException ex) {
@@ -18,7 +18,7 @@ final public class Controller {
         }
     }
 
-    public void setFile(File file) {
+    public void setFile(final File file) {
         this.file = file;
     }
 

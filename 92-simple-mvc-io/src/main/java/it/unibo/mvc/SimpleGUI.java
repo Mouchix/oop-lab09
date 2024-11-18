@@ -27,8 +27,8 @@ public final class SimpleGUI {
         JButton saveButton = new JButton("Save");
         saveButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                controller.write(textArea.getText());   
+            public void actionPerformed(final ActionEvent e) {
+                controller.write(textArea.getText());
             }
         });
         panel.add(textArea, BorderLayout.CENTER);
